@@ -67,7 +67,7 @@ namespace CalcBigValue
         public static List<int> StringToBigint( string s)
         {
             var digit = new List<int>();
-            for( var i = 0; i < s.Length; i++ )
+            for( var i = s.Length-1; i >= 0; i-- )
             {
                 digit.Add( int.Parse( s.Substring(i, 1)));
             }
@@ -78,9 +78,9 @@ namespace CalcBigValue
         public static string BigintToString(List<int> digit)
         {
             var str = new StringBuilder();
-            foreach( var num in digit)
+            for( var i = digit.Count -1; i >= 0; i-- )
             {
-                str.Append(num);
+                str.Append(digit[i]);
             }
             return str.ToString();
         }
