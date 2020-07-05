@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CalcBigValue
 {
-    class Program
+    public class BigintCalculator        
     {
         static void Main(string[] args)
         {
