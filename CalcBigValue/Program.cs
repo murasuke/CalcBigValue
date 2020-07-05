@@ -13,29 +13,16 @@ namespace CalcBigValue
     {
         static void Main(string[] args)
         {
-            var bigint = StringToBigint("123456789012345");
-            Console.WriteLine(BigintToString(bigint));
+            var val = StringToBigint("1");
+            //2^100
+            for (var i = 0; i< 1000; i++)
+            {
+                val = Addition(val, val);
 
-            Func<string,List<int>> stb = StringToBigint;
-            Func<List<int>, string> bts = BigintToString;
+                Console.WriteLine(((i + 1).ToString("000") + " : " + BigintToString(val)));
+            }
 
-            var add1 = bts( Addition(stb("1234"), stb("6420")));
-            Console.WriteLine(add1);
-
-            var add2 = bts(Addition(stb("99999999999999999"), stb("1")));
-            Console.WriteLine(add2);
-
-            add2 = bts(Addition(stb("99999999999999999"), stb("99999999999999999")));
-            Console.WriteLine(add2);
-
-            var sub1 = bts(Subtraction(stb("6420"), stb("1234")));
-            Console.WriteLine(sub1);
-
-            var sub2 = bts(Subtraction(stb("1000000000000000000"), stb("1")));
-            Console.WriteLine(sub2);
-
-            sub2 = bts(Subtraction(stb("1000000000000000000"), stb("1000000000000000000")));
-            Console.WriteLine(sub2);
+           
             return;
         }
 
@@ -66,6 +53,22 @@ namespace CalcBigValue
             }
 
             return CarryAndFix(digit_ans);
+        }
+
+        public static List<int> Multiplication(List<int> digit_a, List<int> digit_b)
+        {
+            int lena = digit_a.Count;
+            int lenb = digit_b.Count;
+            int[] res = new int[lena + lenb - 1];
+
+            for( var i = 0; i < lena; i++)
+            {
+                for( var j = 0; j < lenb; j++)
+                {
+                    res[i + j] += digit_a[i] * digit_b[j];
+                }
+            }
+            return CarryAndFix( new List<int>(res) );
         }
 
         public static List<int> CarryAndFix(List<int> digit)

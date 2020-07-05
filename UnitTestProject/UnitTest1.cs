@@ -37,7 +37,7 @@ namespace CalcTest
         {
 
             var add1 = _bts(BigintCalculator.Addition(_stb("1234"), _stb("6420")));
-            Assert.AreEqual(add1, "7654", "1234+6421");
+            Assert.AreEqual(add1, "7654", "1234+6420");
 
             var add2 = _bts(BigintCalculator.Addition(_stb("99999999999999999"), _stb("1")));
             Assert.AreEqual(add2, "100000000000000000", "99999999999999999+1");
@@ -54,6 +54,16 @@ namespace CalcTest
 
             var sub3 = _bts(BigintCalculator.Subtraction(_stb("1000000000000000000"), _stb("1000000000000000000")));
             Assert.AreEqual(sub3, "0", "1000000000000000000-1000000000000000000");
+        }
+
+        [TestMethod]
+        public void MultiTest()
+        {
+            var mul1 = _bts(BigintCalculator.Multiplication(_stb("1234"), _stb("6420")));
+            Assert.AreEqual(mul1, (1234*6420).ToString(), "1234*6420");
+
+            var mul2 = _bts(BigintCalculator.Multiplication(_stb("1234567890"), _stb("9876543210")));
+            Assert.AreEqual(mul2, "12193263111263526900", "1234567890*9876543210");
         }
 
         [TestMethod]
